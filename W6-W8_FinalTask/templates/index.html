@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload and Processing</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js" defer></script>
+</head>
+<body>
+    <h1>Upload File for Summarization</h1>
+    <input type="file" id="fileInput" name="file">
+    <button id="uploadButton">Upload and Process</button>
+    <br><br>
+    <!-- 进度条 -->
+<div id="progressBarContainer" style="width: 100%; background-color: #ddd;">
+  <div id="progressBar" style="width: 0%; height: 30px; background-color: #4CAF50; text-align: center; line-height: 30px; color: white;"></div>
+</div>
+
+<script>
+    // WebSocket 连接
+    var ws = new WebSocket("ws://localhost/ws");
+
+    ws.onmessage = function(event) {
+        var data = JSON.parse(event.data);
+
+        // 检查消息类型
+        if (data.type && data.type === "progress") {
+            // 更新进度条
+            var progressBar = document.getElementById("progressBar");
+            progressBar.style.width = data.value + '%';
+            progressBar.textContent = data.value + '%';
+        }
+    };
+</script>
+<!-- 对话框元素（默认隐藏） -->
+<div id="downloadModal" style="display: none;">
+    <p>文件处理完成！</p>
+    <button id="downloadButton">下载文件</button>
+</div>
+
+<script>
+    // WebSocket 连接
+    var ws = new WebSocket("ws://localhost/ws");
+
+    ws.onmessage = function(event) {
+        var data = JSON.parse(event.data);
+
+        // 检查消息类型
+        if (data.type && data.type === "file_ready") {
+            // 显示对话框
+            document.getElementById("downloadModal").style.display = 'block';
+
+            // 设置下载按钮的链接
+            document.getElementById("downloadButton").onclick = function() {
+                window.location.href = `/download/${data.filename}`;
+            };
+        }
+    };
+</script>
+</body>
+</html>

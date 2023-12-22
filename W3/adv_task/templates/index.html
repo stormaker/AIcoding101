@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书文案生成器</title>
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <main class="main">
+        <header>
+            <h1>小红书文案生成器</h1>
+        </header>
+        <div class="content">
+            <section class="left">
+                <div class="tip">一键生成小红书文案</div>
+                <textarea class="input" id="input" name="input" placeholder="详细描述你想要生成的文案，包括主题，需要包含观点和内容"></textarea>
+                <div class="generate" id="generate">生成文案</div>
+            </section>
+            <section class="right">
+                <div class="output" id="output"></div>
+            </section>
+        </div>
+    </main>
+    <script src="{{ url_for('static', path='/index.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+}
+
+.main {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ccc;
+}
+
+h1 {
+    color: red;
+    font-size: 48px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+}
+
+.left {
+    flex: 1;
+    margin-right: 30px;
+}
+
+.right {
+    flex: 1;
+    border: 1px solid red;
+}
+
+.tip{
+    color: #AAAAAA;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.input{
+    width: 100%;
+    height: 300px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #46A5DD;
+    border-radius: 6px;
+
+    outline: none;
+}
+
+.generate {
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    background-color: #46A5DD;
+    border-radius: 22px;
+    color: #fff;
+}
+
+.output {
+    width: 100%;
+    height: 400px;
+    border: 20px red;
+    overflow: scroll;
+    white-space: pre-wrap;
+}
